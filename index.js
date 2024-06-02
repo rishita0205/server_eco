@@ -9,9 +9,6 @@ import cartRoutes from './routes/cartRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 
 dotenv.config();
-
-console.log('MongoDB URI:', process.env.MONGODB_URI);
-console.log('PORT:', process.env.PORT);
 const app = express();
 const PORT = process.env.PORT;
 
