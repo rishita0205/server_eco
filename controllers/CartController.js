@@ -51,7 +51,7 @@ export const getCartItems = catchAsyncError(async (req, res, next) => {
   const userId = req.user._id;
 
   // Find the user's cart
-  const cart = await Cart.findOne({ user: userId }).populate('items.productId', 'name price image discountedPrice');
+  const cart = await Cart.findOne({ user: userId }).populate('items.productId', 'title name price image discountedPrice');
 
   if (!cart) {
     return next(new ErrorHandler("Cart not found", 404));
