@@ -8,22 +8,61 @@ const productSchema = new mongoose.Schema({
     },
     price: {
         type: Number,
-        required: true
+        required: true,
+        max:[999999,"Price Should not more than 999999"]
     },
     description: String,
     image: {
         type: String,
-        required: true
+       
+    },
+    category:{
+        type:String,
+        required:[true,"please enter product category"],
     },
     discountedPrice: Number,
     verified: Boolean,
-    rating: {
-        type: String,
-        required: true
-    },
+    ratings: {
+        type: Number,
+        default: 0,
+      },
+    numOfReviews: {
+        type: Number,
+        default: 0,
+      },
     stock: {
         type: Number,
-        required: true
+        required: [true,"Please enter Product stock"],
+        max:[9999,"Stock cannot be more than 9999"],
+        default:1
+    },
+    reviews:[{
+        user: {
+            type: mongoose.Schema.ObjectId,
+            ref: "User",
+            required: true,
+          },
+        name:{
+            type:String,
+            required:true,
+        },
+        rated:{
+            type:Number,
+            required:true,
+        },
+        comment:{
+            type:String,
+            required:true,
+        }
+    }],
+    createdAt:{
+      type:Date,
+      default:Date.now
+    },
+    user:{
+    type:mongoose.Schema.ObjectId,
+    ref:"User",
+    required:true
     }
 });
 
